@@ -116,6 +116,9 @@ export class TodosAccess {
     }
 
     const result = await this.docClient.update(params).promise()
+
+    logger.info('Result is', result)
+
     console.log(`Result is ${result}`)
     const attributes = result.Attributes
 
@@ -138,6 +141,8 @@ export class TodosAccess {
         }
       })
       .promise()
+
+    logger.info('IsExist', checkIfExist)
 
     if (checkIfExist.Items.length === 0) {
       result = {
